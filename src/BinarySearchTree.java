@@ -29,6 +29,26 @@ class BinarySearchTree<T extends Comparable<T>> {
     public int size() {
         return size;  // Return the current size of the tree
     }
+    public boolean search(T key) {
+        return searchRecursive(root, key);
+    }
+
+    private boolean searchRecursive(INode<T> node, T key) {
+        if (node == null) {
+            return false;
+        }
+
+        if (key.compareTo(node.getKey()) == 0) {
+            return true;
+        }
+
+        if (key.compareTo(node.getKey()) < 0) {
+            return searchRecursive(node.getLeft(), key);
+        } else {
+            return searchRecursive(node.getRight(), key);
+        }
+    }
+
 
     public void printInOrder() {
         printInOrderRecursive(root);
