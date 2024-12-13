@@ -1,8 +1,10 @@
 class BinarySearchTree<T extends Comparable<T>> {
     private INode<T> root;
+    private int size;  // Variable to store the size of the tree
 
     public BinarySearchTree() {
         this.root = null;
+        this.size = 0;
     }
 
     public void add(T key) {
@@ -11,6 +13,7 @@ class BinarySearchTree<T extends Comparable<T>> {
 
     private INode<T> addRecursive(INode<T> node, T key) {
         if (node == null) {
+            size++;  // Increment size when a new node is added
             return new MyBinaryNode<>(key);
         }
 
@@ -23,6 +26,10 @@ class BinarySearchTree<T extends Comparable<T>> {
         return node;
     }
 
+    public int size() {
+        return size;  // Return the current size of the tree
+    }
+
     public void printInOrder() {
         printInOrderRecursive(root);
     }
@@ -30,7 +37,7 @@ class BinarySearchTree<T extends Comparable<T>> {
     private void printInOrderRecursive(INode<T> node) {
         if (node != null) {
             printInOrderRecursive(node.getLeft());
-            System.out.println(node.getKey());
+            System.out.print(node.getKey()+" ");
             printInOrderRecursive(node.getRight());
         }
     }
